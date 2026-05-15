@@ -2,5 +2,5 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "python3 ingest/load.py --pages 999"
-restartPolicyType = "never"
+startCommand = "gunicorn dashboard.app:app --bind 0.0.0.0:$PORT --timeout 60 --workers 2"
+restartPolicyType = "always"
